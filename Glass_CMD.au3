@@ -27,14 +27,12 @@ WEnd
 
 Func HookProc($hWnd, $Msg, $wParam, $lParam)
 	Switch $wParam
-	Case $HSHELL_WINDOWCREATED
+	Case $HSHELL_WINDOWACTIVATED
 		If _ProcessGetName(WinGetProcess($lParam)) = "cmd.exe" Then 
 			EnableBlurBehind($lParam)
 			If @error Then MsgBox(16, "Glass CMD", "You are not running Vista!")
 			ClearMemory()
 		EndIf
-	Case $HSHELL_WINDOWACTIVATED
-		ClearMemory()
 	EndSwitch
 EndFunc
 
