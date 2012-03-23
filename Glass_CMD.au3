@@ -28,7 +28,8 @@ WEnd
 Func HookProc($hWnd, $Msg, $wParam, $lParam)
 	Switch $wParam
 	Case $HSHELL_WINDOWACTIVATED
-		If _ProcessGetName(WinGetProcess($lParam)) = "cmd.exe" Then 
+		Local $procName = _ProcessGetName(WinGetProcess($lParam))
+		If $procName = "cmd.exe" or $procName = "powershell.exe" or $procName = "putty.exe" or $procName = "maruo.exe" or $procName = "hidemaru.exe" Then
 			EnableBlurBehind($lParam)
 			If @error Then MsgBox(16, "Glass CMD", "You are not running Vista!")
 			ClearMemory()
